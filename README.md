@@ -1,12 +1,12 @@
 # Distributed-QuantLib
-This project is a distributed system for financial.
-As QuantLib is a single thread program. This project is to show how can accelerate computation among server farms.
-Each of computer communicates via Apache Kafka to distributes workload and communicates between different type of services.
-With thread pool that connect direcly to C++ from JVM for achieving concurrency of execution in a computer
+This project is a distributed system for financial.  
+As QuantLib is a single thread program. This project is to show how can accelerate computation among server farms.  
+Each of computer communicates via Apache Kafka to distributes workload and communicates between different type of services.  
+With thread pool that connect direcly to C++ from JVM for achieving concurrency of execution in a computer  
 
 ## Design
-The project is designed by use Microservice Pattern.
-Thread pool with LinkedBlockingQueue for each of pool worker
+The project is designed by use Microservice Pattern.  
+Thread pool with LinkedBlockingQueue for each of pool worker  
 
 ## Services
 Currently, it has 4 services.
@@ -30,12 +30,12 @@ Support 2 types of financial instruments to demonstrate distributed
 5.	C++, QuantLib, boost 1.75.0 for QuantJNI library.
 6.	JNI for Pricer and QuantJNI library.
 
-Java/Scala IDE : IntelliJ IDEA
-JDK : OpenJDK 15
-Build tool : Gradle 
-C++ IDE : Microsoft Visual Studio 2019
-Message Broker : kafka_2.13-2.7.0, apache-zookeeper-3.6.2
-Databases : Redis 6.0.6, PostgreSQL 12.5
+Java/Scala IDE : IntelliJ IDEA  
+JDK : OpenJDK 15  
+Build tool : Gradle  
+C++ IDE : Microsoft Visual Studio 2019  
+Message Broker : kafka_2.13-2.7.0, apache-zookeeper-3.6.2  
+Databases : Redis 6.0.6, PostgreSQL 12.5  
 
 ## Setup
 1.	Set port of service and Kafka for each service from application.yml
