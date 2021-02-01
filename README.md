@@ -21,10 +21,10 @@ Support 2 types of financial instruments to demonstrate distributed
 2.	Fixed-Rate Bond
 
 ## Technology
-Java for Main Server service, Pricer servce, and Data Provider service.
-Scala for Position service.
-Spring boot for all services.
-Apache Kafka for all services.
-C++ for QuantJNI library.
-JNI for Pricer and QuantJNI library.
+1.	Java for Main Server service, Pricer servce, and Data Provider service.
+2.	Scala for Position service.
+3.	Spring boot for all services.
+4.	Apache Kafka for all services.
+5.	C++ for QuantJNI library.
+6.	JNI for Pricer and QuantJNI library.
 
