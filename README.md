@@ -13,16 +13,18 @@ Currently, it has 4 services.
 3.	Data Provider service, to work with databases. Both in-memory database (Redis) or persistent database (PostgreSQL)
 4.	Position service, to calculate for sensitivity analysis
 
+![Image of System](https://raw.githubusercontent.com/na-ho/Distributed-QuantLib/main/Doc/SystemView.png)
+
 ## Financial instruments
 Support 2 types of financial instruments to demonstrate distributed
 1.	European Option Monte Carlo (Sobol) 
 2.	Fixed-Rate Bond
 
 ## Technology
-Java for Main Server service, Pricer servce, and Data Provider service
-Scala for Position service
-Spring boot for all services
-Apache Kafka for all services
-C++ for QuantJNI library
-JNI for Pricer and QuantJNI library
+Java for Main Server service, Pricer servce, and Data Provider service.
+Scala for Position service.
+Spring boot for all services.
+Apache Kafka for all services.
+C++ for QuantJNI library.
+JNI for Pricer and QuantJNI library.
 
