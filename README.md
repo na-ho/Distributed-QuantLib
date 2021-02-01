@@ -1,5 +1,5 @@
 # Distributed-QuantLib
-This project is a distributed system for financial.  
+This project is a distributed system for financial system.  
 As QuantLib is a single thread program. This project is to show how can accelerate computation among server farms.  
 Each of computer communicates via Apache Kafka to distributes workload and communicates between different type of services.  
 With thread pool that connect direcly to C++ from JVM for achieving concurrency of execution in a computer  
