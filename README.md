@@ -5,8 +5,8 @@ Each of computer communicates via Apache Kafka to distributes workload and commu
 With thread pool that connect direcly to C++ from JVM for achieving concurrency of execution in a computer  
 
 ## Design
-The project is designed by use Microservices Pattern.  
-Thread pool with LinkedBlockingQueue for each of pool worker  
+The project is a design by using  Microservices architecture  
+Thread pool with LinkedBlockingQueue for each pool worker  
 
 ## Services
 Currently, it has 4 services.
