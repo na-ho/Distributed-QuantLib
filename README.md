@@ -1,8 +1,9 @@
 # Distributed-QuantLib
-This project is a distributed system for financial system.  
+This project is a distributed system for the financial system.  
 As QuantLib is a single thread program. This project is to show how can accelerate computation among server farms.  
-Each of computer communicates via Apache Kafka to distributes workload and communicates between different type of services.  
-With thread pool that connect direcly to C++ from JVM for achieving concurrency of execution in a computer  
+Each computer communicates via Apache Kafka to distributes workload and communicates between different types of services.  
+Scalability is archivable for Pricer service without restart all the services to increase or reduce computation nodes.    
+With thread pool that connects directly to C++ from JVM for achieving concurrency of execution in a computer  
 
 ## Design
 The project is a design by using  Microservices architecture  
@@ -18,12 +19,12 @@ Currently, it has 4 services.
 ![Image of System](https://raw.githubusercontent.com/na-ho/Distributed-QuantLib/main/Doc/SystemView.png)
 
 ## Financial instruments
-Support 2 types of financial instruments to demonstrate distributed
+Support 2 types of financial instruments to demonstrate distributed (currently)
 1.	European Option Monte Carlo (Sobol) 
 2.	Fixed-Rate Bond
 
 ## Technology
-1.	Java for Main Server service, Pricer servce, and Data Provider service.
+1.	Java for Main Server service, Pricer service, and Data Provider service.
 2.	Scala for Position service.
 3.	Spring boot for all services.
 4.	Apache Kafka for all services.
@@ -38,9 +39,9 @@ Message Broker : kafka_2.13-2.7.0, apache-zookeeper-3.6.2
 Databases : Redis 6.0.6, PostgreSQL 12.5  
 
 ## Setup
-1.	Set port of service and Kafka for each service from application.yml
-2.	Set database connection for DataProvider service from application.yml
-3.	Create table for PostgreSQL with
+1.	Set the port of the service and Kafka for each service in application.yml
+2.	Set database connection for DataProvider service in application.yml
+3.	Create a table for PostgreSQL with
 	```
 	CREATE TABLE public."EuropeanOptionMCSobolDataParam" (
 		id int4 NOT NULL DEFAULT nextval('europeanoptionmcsoboldataparam_id_seq'::regclass),
@@ -68,5 +69,6 @@ Databases : Redis 6.0.6, PostgreSQL 12.5
 ## Running
 1.	Start ZooKeepper then Kafka
 2.	Start Redis, PostgreSQL
-3.	Start Each of services
+3.	Start Each of the services for Main Server service and Data Provider service
+	For Pricer service, it can start as needed
 4.	Test Rest API from Main Server
