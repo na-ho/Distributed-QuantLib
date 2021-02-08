@@ -75,22 +75,46 @@ public class MainServerController {
         }
     }
 
-    @GetMapping("/api/priceBondFixedRate")
-    public Object priceBondFixedRate() throws Exception {
+    @PostMapping(path = "/api/priceBondFixedRate", consumes = "application/json", produces = "application/json")
+    public Object priceBondFixedRate(@RequestBody BondFixedRate bondFixedRate) throws Exception {
+
+        int calculationId = getCallId(MsgConst.TOPIC_NAME_BOND_FIXED_RATE_DATA_REQUEST_CALCULATION_ID);
+        bondFixedRate.setCalculationId(calculationId);
+        this.kafkaTemplate.send(MsgConst.TOPIC_NAME_BOND_FIXED_RATE, "", bondFixedRate);
+        return Map.of(
+                "status", "Command priceBondFixedRate Sent",
+                "Calculation ID", calculationId
+        );
+    }
+
+    @PostMapping(path = "/api/priceEuropeanOptionMCSobol", consumes = "application/json", produces = "application/json")
+    public Object priceEuropeanOptionMCSobol(@RequestBody EuropeanOptionMCSobol europeanOptionMCSobol) throws Exception {
+
+        int calculationId = getCallId(MsgConst.TOPIC_NAME_EUROPEAN_OPTION_MC_SOBOL_REQUEST_CALCULATION_ID);
+        europeanOptionMCSobol.setCalculationId(calculationId);
+        this.kafkaTemplate.send(MsgConst.TOPIC_NAME_EUROPEAN_OPTION_MC_SOBOL, "", europeanOptionMCSobol);
+        return Map.of(
+                "status", "Command priceEuropeanOptionMCSobol Sent",
+                "Calculation ID", calculationId
+        );
+    }
+
+    @GetMapping("/api/testPriceBondFixedRate")
+    public Object testPriceBondFixedRate() throws Exception {
 
         // for testing
-        var calId = sendBondFixedRate();
+        var calId = testSendBondFixedRate();
         return Map.of(
                 "status", "Command priceBondFixedRate Sent",
                 "Calculation ID", calId
         );
     }
 
-    @GetMapping("/api/priceEuropeanOptionMCSobol")
-    public Object priceEuropeanOptionMCSobol() throws Exception {
+    @GetMapping("/api/testPriceEuropeanOptionMCSobol")
+    public Object testPriceEuropeanOptionMCSobol() throws Exception {
 
         // for testing
-        var calId = sendEuropeanOptionMCSobol();
+        var calId = testSendEuropeanOptionMCSobol();
         return Map.of(
                 "status", "Command priceEuropeanOptionMCSobol Sent",
                 "Calculation ID", calId
@@ -145,7 +169,12 @@ public class MainServerController {
         }
     }
 
-    private int sendBondFixedRate() throws ParseException, ExecutionException, InterruptedException {
+    private int getCallId(final String msgTopicName) throws ExecutionException, InterruptedException {
+        ProducerRecord<String, Object> record = new ProducerRecord<>(msgTopicName, null, null, (Object) null);
+        return (int) this.replyingKafkaTemplate.sendAndReceive(record).get().value();
+    }
+
+    private int testSendBondFixedRate() throws ParseException, ExecutionException, InterruptedException {
 
         BondFixedRate bondFixedRate = new BondFixedRate();
         bondFixedRate.setSettlementDate_year(2008);
@@ -186,7 +215,7 @@ public class MainServerController {
         return calculationId;
     }
 
-    private int sendEuropeanOptionMCSobol() throws ParseException, ExecutionException, InterruptedException {
+    private int testSendEuropeanOptionMCSobol() throws ParseException, ExecutionException, InterruptedException {
         EuropeanOptionMCSobol europeanOptionMCSobol = new EuropeanOptionMCSobol();
 
         OptionType optionType = OptionType.PUT;
